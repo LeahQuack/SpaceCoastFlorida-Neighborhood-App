@@ -1,0 +1,10 @@
+.App {
+  text-align: center;
+}
+#header {
+  margin-top: 3%;
+  text-align: center;
+}
+#map {
+  min-height: 100vh;
+}
