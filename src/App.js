@@ -90,12 +90,11 @@ THANK YOU to EPRIS and SARAH for their help! OMG*/
     marker.addListener('click', function() {
       openInfoMarker()
     }, { passive: true})
-  }
-)
+  })
 }
 
   //Filter the SearchBar list/results
-  // THANK YOU Project Coaches DOUG and JASON WHITE.  This Query STUMPED 
+  // THANK YOU Project Coaches DOUG and JASON WHITE.  This Query STUMPED
   updateQuery = query => {
     this.setState({ query });
     this.state.markers.map(marker => marker.setVisible(true));
@@ -125,37 +124,35 @@ THANK YOU to EPRIS and SARAH for their help! OMG*/
 
     render() {
    if (this.state.hasError) {
-     return <div id="Error-message" aria-label="Error message">Error!</div>
+     return <div id="Error-message" aria-label="Error message" role="Alertdialog">Error!</div>
    } else {
      return (
      <main>
        <ErrorBoundary>
 
-       <div id="header" aria-label="Header">
+       <div id="header" aria-label="Header" role="heading">
        <h3>Leah's Favorite Space Coast Spots</h3>
        </div>
 
-       <div id="SearchBar" aria-label="Search Bar">
+       <div id="SearchBar" aria-label="Search Bar" role="Search">
          <SearchBar
            venues={ this.state.showVenues }
            markers={ this.state.markers }
            filteredVenues={ this.filteredVenues }
            query={this.state.query}
            updateQuery = {this.updateQuery}
-          // clearQuery={this.clearQuery}
-           //updateQuery={b => this.updateQuery(b)}
            clickLocation={this.clickLocation}
          />
        </div>
 
-       <div id="container" aria-label="Menu Container">
+       <div id="container" aria-label="Menu Container" role="menu">
          <BurgerMenu
            venues={ this.state.results }
            markers={ this.state.markers }
          />
        </div>
 
-       <div id="map" aria-label="Map" role="application">
+       <div id="map" aria-label="map" role="application">
        </div>
 
        </ErrorBoundary>
