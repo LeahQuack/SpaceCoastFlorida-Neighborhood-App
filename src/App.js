@@ -46,7 +46,7 @@ THANK YOU to EPRIS and SARAH for their help! OMG*/
       }, this.mapPrep())
     })
       .catch(error => {
-        console.log("ERROR " + error)
+        alert("FourSquare API " + error)
     });
   }
 
