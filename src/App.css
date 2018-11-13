@@ -8,3 +8,14 @@
 #map {
   min-height: 100vh;
 }
+
+li {
+  list-style-type:none;
+}
+
+@media screen and (max-width: 480px) {
+
+#header {
+  font-size: 3vw;
+}
+}
