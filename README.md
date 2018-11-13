@@ -1,10 +1,29 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).  View information below starting at Available Scripts.
 
+# React Neighborhood Map!
+The final project for the Udacity Grow with Google Scholarship Nanodegree program!
+Using React JS, FourSquare and Google Maps API, this map focuses on Space Coast Florida, centering in Cocoa.
+My favorite places are the beaches, Kennedy Space Center, and Patrick AFB (we're all vets in this family :)).
+Use the search tool to easily navigate through the locations, click a marker to display some info about the spot, and toggle the hamburger icon to move the list out of the way!
 
+Also, checkout the react-burger-menu, Error Boundaries, and that awesome Courier font!
 
+# Featuring
+* Accessibility
+* Responsiveness
+* Mobile First!
+* Single Page and Offline Use!
 
+# To Run:
+1. Install `node` and `npm`
+2. Clone or download this repo
+3. Extract!
+4. `npm install` and
+5.  You can either use your terminal to navigate to the app and `npm start` there, or right-click on the folder to `Git Here` and then `npm run` OR
+6. `npm start` in your terminal, open your browser to `localhost:3000` and navigate to the files.
 
-
+## A note about the service worker:
+The serviceworker will ONLY WORK in production mode - so, for production mode, run `npm build`
 
 
 ## Resources
