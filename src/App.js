@@ -11,6 +11,7 @@ THANK YOU to EPRIS and SARAH for their help! OMG*/
     state = {
       venues: [],
       markers: [],
+      results: [],
       hideMarkers: [],
       query:''
     }
@@ -22,7 +23,7 @@ THANK YOU to EPRIS and SARAH for their help! OMG*/
 //Loads the map script (thanks to the function at the very bottom) so we are able to initmap
   mapPrep = () => {
     loadScript("https://maps.googleapis.com/maps/api/js?key=AIzaSyC8IQJcM-S_dqVfwGnMXhxY2tkps-U10nQ&callback=initMap")
-    window.initMap = this.initMap
+    window.initMap = this.initMap;
   }
 //I have put in three queries to direct folks to my favorite types of space coast searches.
 //I upped the limit to 30 because a bunch of my favs were missing haha
@@ -40,7 +41,8 @@ THANK YOU to EPRIS and SARAH for their help! OMG*/
     axios.get(endPoint + new URLSearchParams(params))
       .then(response => {
         this.setState({
-        venues: response.data.response.groups[0].items
+        venues: response.data.response.groups[0].items,
+        results: response.data.response.groups[0].items.slice()
       }, this.mapPrep())
     })
       .catch(error => {
@@ -104,8 +106,12 @@ THANK YOU to EPRIS and SARAH for their help! OMG*/
            venue.venue.name.toLowerCase().includes(query.toLowerCase())
        )
        }))
+
+       const results = this.state.venues.filter((venue) =>
+        venue.venue.name.toLowerCase().includes(query.toLowerCase()));
+
        hideMarkers = this.state.markers.filter(marker =>
-         this.state.results.every(myVenue => myVenue.venue.name !== marker.title)
+         results.every(myVenue => myVenue.venue.name !== marker.title)
        )
 
        //Hide any markers that dont fit the query
@@ -136,6 +142,7 @@ THANK YOU to EPRIS and SARAH for their help! OMG*/
            markers={ this.state.markers }
            filteredVenues={ this.filteredVenues }
            query={this.state.query}
+           updateQuery = {this.updateQuery}
           // clearQuery={this.clearQuery}
            //updateQuery={b => this.updateQuery(b)}
            clickLocation={this.clickLocation}
@@ -144,7 +151,7 @@ THANK YOU to EPRIS and SARAH for their help! OMG*/
 
        <div id="container" aria-label="Menu Container">
          <BurgerMenu
-           venues={ this.state.venues }
+           venues={ this.state.results }
            markers={ this.state.markers }
          />
        </div>
