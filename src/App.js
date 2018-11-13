@@ -95,35 +95,34 @@ THANK YOU to EPRIS and SARAH for their help! OMG*/
 }
 
   //Filter the SearchBar list/results
-  updateQuery = (query) => {
-     this.setState({ query })
-     this.state.markers.map(marker => marker.setVisible(true))
-     let hideMarkers
+  // THANK YOU Project Coaches DOUG and JASON WHITE.  This Query STUMPED 
+  updateQuery = query => {
+    this.setState({ query });
+    this.state.markers.map(marker => marker.setVisible(true));
+    let hideMarkers;
 
-     if (query) {
-       this.setState((state) => ({
-         results: state.venues.filter((venue) =>
-           venue.venue.name.toLowerCase().includes(query.toLowerCase())
-       )
-       }))
+    if (query) {
+      const results = this.state.venues.filter(venue =>
+        venue.venue.name.toLowerCase().includes(query.toLowerCase())
+      );
+      this.setState({
+        results
+      });
 
-       const results = this.state.venues.filter((venue) =>
-        venue.venue.name.toLowerCase().includes(query.toLowerCase()));
+      hideMarkers = this.state.markers.filter(marker =>
+        results.every(myVenue => myVenue.venue.name !== marker.title)
+      );
 
-       hideMarkers = this.state.markers.filter(marker =>
-         results.every(myVenue => myVenue.venue.name !== marker.title)
-       )
+      //Hide any markers that dont fit the query
+      hideMarkers.forEach(marker => marker.setVisible(false));
 
-       //Hide any markers that dont fit the query
-      hideMarkers.forEach(marker => marker.setVisible(false))
+      this.setState({ hideMarkers });
+    } else {
+      this.setState({ results: this.state.venues });
+      this.state.markers.forEach(marker => marker.setVisible(true));
+    }
+  };
 
-       this.setState({ hideMarkers })
-     } else {
-       this.setState({ venues: this.state.showVenues })
-       this.state.markers.forEach(marker => marker.setVisible(true))
-     }
-   }
-  
     render() {
    if (this.state.hasError) {
      return <div id="Error-message" aria-label="Error message">Error!</div>
