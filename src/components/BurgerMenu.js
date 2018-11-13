@@ -22,7 +22,7 @@ class BurgerMenu extends Component {
   render () {
     return (
       <Menu width={ '30%' } isOpen noOverlay >
-        <div className="listOfVenues" aria-label="List of Venues">
+        <div className="listOfVenues" aria-label="List of Venues" role="List">
         {this.props.venues.map(myVenue => (
             <li role="menuitem" onClick={() => {this.openMarker(myVenue.venue.name);}}
                 aria-label={myVenue.venue.name}
@@ -43,3 +43,4 @@ class BurgerMenu extends Component {
 }
 
 export default BurgerMenu
+
