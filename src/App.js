@@ -6,7 +6,8 @@ import ErrorBoundary from './components/ErrorBoundary';
 import SearchBar from './components/SearchBar'
 
 class App extends Component {
-  /*I want to seriously thank Sarah Cervantes, a fellow student, for helping me, this weekend. I almost quit but a bunch of students got onto me in the Slack channel and Sarah reached out. I had too much code for simple things, so thank you, Sarah, for helping my brain CALM DOWN! This is my fifth startover attempt*/
+  /*This is my fifth startover attempt
+THANK YOU to EPRIS and SARAH for their help! OMG*/
     state = {
       venues: [],
       markers: [],
@@ -90,31 +91,33 @@ class App extends Component {
   }
 )
 }
-/*THis is where I am stuck!
-When I click my search bar and type a letter, all hell breaks loose.  I think it is because my search bar and query function arent connected properly OR it is because my query function just sucks.  I cannot figure it out which is why I am submitting to see what kinks I have and if there are any hints on how to fix!
-*/
+
+  //Filter the SearchBar list/results
   updateQuery = (query) => {
-      this.setState({ query })
-      this.state.markers.map(marker => marker.setVisible(true))
-      let filterVenues
-      let hideMarkers
+     this.setState({ query })
+     this.state.markers.map(marker => marker.setVisible(true))
+     let hideMarkers
 
-      if (query) {
-        this.setState({ venues: filterVenues })
-        hideMarkers = this.state.markers.filter(marker =>
-          filterVenues.forEach(myVenue => myVenue.venue.name !== marker.title)
-        )
+     if (query) {
+       this.setState((state) => ({
+         results: state.venues.filter((venue) =>
+           venue.venue.name.toLowerCase().includes(query.toLowerCase())
+       )
+       }))
+       hideMarkers = this.state.markers.filter(marker =>
+         this.state.results.every(myVenue => myVenue.venue.name !== marker.title)
+       )
 
-        //Hide any markers that dont fit the query
-        hideMarkers.forEach(marker => marker.setVisible(false))
+       //Hide any markers that dont fit the query
+      hideMarkers.forEach(marker => marker.setVisible(false))
 
-        this.setState({ hideMarkers })
-      } else {
-        this.setState({ venues: this.state.showVenues })
-        this.state.markers.forEach(marker => marker.setVisible(true))
-      }
-    }
-
+       this.setState({ hideMarkers })
+     } else {
+       this.setState({ venues: this.state.showVenues })
+       this.state.markers.forEach(marker => marker.setVisible(true))
+     }
+   }
+  
     render() {
    if (this.state.hasError) {
      return <div id="Error-message" aria-label="Error message">Error!</div>
