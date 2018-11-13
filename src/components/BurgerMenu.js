@@ -29,7 +29,7 @@ class BurgerMenu extends Component {
                 id={myVenue.venue.id}
                 key={myVenue.venue.id}>
               <br/>
-                <b>{myVenue.venue.name}</b>
+                <button role="Link">{myVenue.venue.name}</button>
               <br/>
             </li>
           ))}
