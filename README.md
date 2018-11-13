@@ -19,7 +19,7 @@ Also, checkout the react-burger-menu, Error Boundaries, and that awesome Courier
 2. Clone or download this repo
 3. Extract!
 4. `npm install` and
-5.  You can either use your terminal to navigate to the app and `npm start` there, or right-click on the folder to `Git Here` and then `npm run` OR
+5.  You can either use your terminal to navigate to the app and `npm start` there, or right-click on the folder to `Git Here` and then `npm start` OR
 6. `npm start` in your terminal, open your browser to `localhost:3000` and navigate to the files.
 
 ## A note about the service worker:
